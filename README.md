@@ -6,7 +6,7 @@ Here is the source code to this monstrosity.
 ## TO-DO
  - [ ] Add generators
  - [ ] Add respawn mechanics
- - [ ] Add item shpos
+ - [ ] Add item shops
  - [ ] Add custom items
 
 ## Discord
