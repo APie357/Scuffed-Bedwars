@@ -1,0 +1,12 @@
+name: ScuffedBedwars
+version: '${project.version}'
+main: io.github.geniusformat.scuffedbedwars.Scuffedbedwars
+api-version: 1.18
+prefix: "§6[SCUFFED BEDWARS]"
+authors: [ "Genius-Format" ]
+description: "Scuffed bedwars plugin because why not."
+website: "https://genius-format.github.io"
+commands:
+  sbw:
+    description: Manage Scuffed Bedwars
+    usage: /<command> [generator [set [item] [delay]|remove]]
