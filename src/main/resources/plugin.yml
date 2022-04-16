@@ -9,4 +9,4 @@ website: "https://genius-format.github.io"
 commands:
   sbw:
     description: Manage Scuffed Bedwars
-    usage: /<command> [generator [set [item] [delay]|remove]]
+    usage: /<command> [generator [set [name] [item] [delay]|remove [name]]]

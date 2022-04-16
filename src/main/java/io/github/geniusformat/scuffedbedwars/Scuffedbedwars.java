@@ -6,7 +6,6 @@ import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Scuffedbedwars extends JavaPlugin {
@@ -36,33 +35,33 @@ public final class Scuffedbedwars extends JavaPlugin {
             if (args.length >= 2) {
                 if (args[0].equalsIgnoreCase("generator")) {
                     if (args[1].equalsIgnoreCase("set")) {
-                        if (args.length == 4) {
-                            Material m = Material.matchMaterial(args[2]);
+                        if (args.length == 5) {
+                            Material m = Material.matchMaterial(args[3]);
                             if (m == null) {
                                 sender.sendMessage(ChatColor.RED + " is not a valid material.");
                                 return false;
                             }
-                            if (isDouble(args[3])) {
+                            if (isDouble(args[4])) {
                                 Block b = p.getTargetBlock(null, 3);
                                 if (!(b.getType().isSolid())) {
                                     p.sendMessage(ChatColor.RED + "You must be looking at a solid block!");
                                     return false;
                                 }
-                                generatorManager.addGenerator(b, new ItemStack(m), Double.parseDouble(args[3]));
-                                p.sendMessage(ChatColor.GREEN + "Created a generator for " + args[2] + " that generates items every " + args[3] + " seconds.");
+                                generatorManager.addGeneratorFile(args[2], b, args[3], Double.parseDouble(args[4]));
+                                p.sendMessage(ChatColor.GREEN + "Created a generator for " + args[3] + " that generates items every " + args[4] + " seconds.");
                                 return true;
                             }
                         }
                     }
                     else {
-                        if (args.length == 2) {
+                        if (args.length == 3) {
                             if (args[1].equalsIgnoreCase("remove")) {
                                 Block b = p.getTargetBlock(null, 3);
                                 if (!(b.getType().isSolid())) {
                                     p.sendMessage(ChatColor.RED + "You must be looking at a solid block!");
                                     return false;
                                 }
-                                generatorManager.removeGenerator(b);
+                                generatorManager.removeGeneratorFile(args[2], b);
                                 p.sendMessage(ChatColor.GREEN + "Removed the generator.");
                                 return true;
                             }

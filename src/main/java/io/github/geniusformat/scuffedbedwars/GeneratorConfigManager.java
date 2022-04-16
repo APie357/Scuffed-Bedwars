@@ -57,7 +57,7 @@ public class GeneratorConfigManager {
         }
 
         if (!(configFile.exists())) {
-            plugin.saveResource("data.yml", false);
+            plugin.saveResource("generators.yml", false);
         }
     }
 }
