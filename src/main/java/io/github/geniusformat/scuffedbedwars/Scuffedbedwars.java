@@ -1,5 +1,7 @@
 package io.github.geniusformat.scuffedbedwars;
 
+import io.github.geniusformat.scuffedbedwars.GUIs.Shop;
+import io.github.geniusformat.scuffedbedwars.GUIs.ShopClickEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -18,6 +20,7 @@ public final class Scuffedbedwars extends JavaPlugin {
     public void onEnable() {
         generatorConfigManager = new GeneratorConfigManager(this);
         generatorManager.reloadGenerators();
+        getServer().getPluginManager().registerEvents(new ShopClickEvent(), this);
         getServer().getConsoleSender().sendMessage(prefix + "Enjoy your scuffed bedwars! (Plugin loaded)");
     }
 
@@ -32,7 +35,7 @@ public final class Scuffedbedwars extends JavaPlugin {
 
         if (cmd.getName().equalsIgnoreCase("sbw") && sender.isOp()) {
             Player p = (Player) sender;
-            if (args.length >= 2) {
+            if (args.length >= 1) {
                 if (args[0].equalsIgnoreCase("generator")) {
                     if (args[1].equalsIgnoreCase("set")) {
                         if (args.length == 5) {
@@ -68,6 +71,11 @@ public final class Scuffedbedwars extends JavaPlugin {
                         }
                         sender.sendMessage(ChatColor.RED + "/sbw generator [set|remove] [itemType] [seconds]");
                     }
+                }
+                else if (args[0].equalsIgnoreCase("shop")) {
+                    Shop shop = new Shop("lime");
+                    p.openInventory(shop.getInventory());
+                    return true;
                 }
                 else if (args[0].equalsIgnoreCase("reload")) {
                     reloadConfig();

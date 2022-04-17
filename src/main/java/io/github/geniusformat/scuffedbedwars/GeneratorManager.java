@@ -12,9 +12,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class GeneratorManager {
-    // TODO: Make generators save in a config file
-    // TODO: [IN PROGRESS] Make generators load on startup from config file
-
     private Map<Location, Generator> gens = new HashMap();
     private Plugin plugin;
     private GeneratorConfigManager generatorConfigManager;
