@@ -1,5 +1,6 @@
 package io.github.geniusformat.scuffedbedwars;
 
+import io.github.geniusformat.scuffedbedwars.Events.OnPlayerJoin;
 import io.github.geniusformat.scuffedbedwars.GUIs.Shop;
 import io.github.geniusformat.scuffedbedwars.GUIs.ShopClickEvent;
 import org.bukkit.ChatColor;
@@ -18,14 +19,24 @@ public final class Scuffedbedwars extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        /* Generator Manager Stuff */
         generatorConfigManager = new GeneratorConfigManager(this);
         generatorManager.reloadGenerators();
+
+        /* Events */
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new ShopClickEvent(), this);
+
+        /* Tab Completer */
+        getCommand("sbw").setTabCompleter(new TabCompletion());
+
+        /* Enable Message */
         getServer().getConsoleSender().sendMessage(prefix + "Enjoy your scuffed bedwars! (Plugin loaded)");
     }
 
     @Override
     public void onDisable() {
+        /* Disable Message */
         getServer().getConsoleSender().sendMessage(prefix + "I assume that you didn't like the experience. I'm now sad. (Plugin unloaded)");
     }
 

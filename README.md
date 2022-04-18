@@ -4,7 +4,7 @@ My new (very scuffed) bedwars game for Minecraft. So scuffed that we don't even 
 Here is the source code to this monstrosity.
 
 ## TO-DO
- - [ ] Add generators
+ - [X] Add generators
  - [ ] Add respawn mechanics
  - [ ] Add item shops
  - [ ] Add custom items
