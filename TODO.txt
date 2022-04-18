@@ -1,0 +1,9 @@
+ - Fix shop
+ - Add dummy as the "shopkeeper"
+ - Restrict blocks that are able to be broken.
+ - Add knockback churro (lvl 3)
+ - Add knockback drumstick (lvl 5)
+ - Add %2 chance of blocks not placing
+ - Add teams
+ - Add respawn mechanic
+ - Remove crafting
