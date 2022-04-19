@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ShopClickEvent implements Listener {
     @EventHandler
@@ -34,11 +35,17 @@ public class ShopClickEvent implements Listener {
         String unit = ChatColor.stripColor(loreParts[1]);
         Material unitMat = null;
 
-        if (unit == "iron") { unitMat = Material.matchMaterial(unit + "_ingot"); }
-        else if (unit == "gold") { unitMat = Material.matchMaterial(unit + "_ingot"); }
-        else if (unit == "diamond" || unit == "diamonds") { unitMat = Material.matchMaterial(unit); }
-        else if (unit == "emerald" || unit == "emeralds") { unitMat = Material.matchMaterial(unit); }
-        else { unitMat = Material.BARRIER; }
+        if (Objects.equals(unit, "iron")) {
+            unitMat = Material.matchMaterial(unit + "_ingot");
+        } else if (Objects.equals(unit, "gold")) {
+            unitMat = Material.matchMaterial(unit + "_ingot");
+        } else if (Objects.equals(unit, "diamond") || Objects.equals(unit, "diamonds")) {
+            unitMat = Material.matchMaterial(unit);
+        } else if (Objects.equals(unit, "emerald") || Objects.equals(unit, "emeralds")) {
+            unitMat = Material.matchMaterial(unit);
+        } else {
+            unitMat = Material.BARRIER;
+        }
 
         assert unitMat != null;
         ItemStack req = new ItemStack(unitMat, price);
@@ -49,25 +56,12 @@ public class ShopClickEvent implements Listener {
             ItemMeta itemNoLoreMeta = itemNoLore.getItemMeta();
             itemNoLoreMeta.setLore(null);
             itemNoLore.setItemMeta(itemNoLoreMeta);
-            p.getInventory().addItem(itemNoLore);
             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 3.0f, 0.5f);
-        }
-        else {
+            p.getInventory().addItem(itemNoLore);
+            Shop shop = new Shop("lime");
+            p.openInventory(shop.getInventory());
+        } else {
             p.sendMessage(ChatColor.RED + "You don't have the dough...");
         }
-
-        p.getInventory().addItem(debugItem(price, unit, unitMat.toString(), loreParts));
-    }
-
-    private ItemStack debugItem(Integer price, String unit, String mat, String[] lP) {
-        ItemStack i = new ItemStack(Material.BARRIER, 1);
-        ItemMeta m = i.getItemMeta();
-        m.setDisplayName(ChatColor.RED + "DEBUG ITEM");
-        ArrayList<String> l = new ArrayList<>();
-        l.add("Price: " + price.toString() + " : " + lP[0]);
-        l.add("Unit: " + unit + " : " + lP[1] + " : " + mat);
-        m.setLore(l);
-        i.setItemMeta(m);
-        return i;
     }
 }

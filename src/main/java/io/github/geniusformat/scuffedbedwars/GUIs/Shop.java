@@ -3,6 +3,7 @@ package io.github.geniusformat.scuffedbedwars.GUIs;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -27,10 +28,11 @@ public class Shop implements InventoryHolder {
         inv.setItem(2, newItem(Material.OAK_PLANKS, null, 16, 4, "gold"));
         inv.setItem(3, newItem(Material.END_STONE, null, 12, 24, "iron"));
         inv.setItem(4, newItem(Material.LADDER, null, 8, 4, "iron"));
-        inv.setItem(5, newItem(Material.OBSIDIAN, null, 4, 4, "emerald"));
+        inv.setItem(5, newItem(Material.OBSIDIAN, null, 4, 4, "emeralds"));
         inv.setItem(6, newItem(Material.STONE_SWORD, null, 1, 10, "iron"));
         inv.setItem(7, newItem(Material.IRON_SWORD, null, 1, 7, "gold"));
-        inv.setItem(8, newItem(Material.DIAMOND_SWORD, null, 1, 4, "emerald"));
+        inv.setItem(8, newItem(Material.DIAMOND_SWORD, null, 1, 4, "emeralds"));
+        inv.setItem(9, knockbackItem(Material.STICK, "Knockback Churro", 1, 5, "diamonds", 3));
     }
 
     private ItemStack newItem(Material m, @Nullable String name, @Nullable Integer amount, @Nullable Integer price, @Nullable String unit) {
@@ -52,9 +54,11 @@ public class Shop implements InventoryHolder {
                     priceColor = ChatColor.GOLD;
                     break;
                 case "diamond":
+                case "diamonds":
                     priceColor = ChatColor.AQUA;
                     break;
                 case "emerald":
+                case "emeralds":
                     priceColor = ChatColor.GREEN;
                     break;
             }
@@ -66,6 +70,16 @@ public class Shop implements InventoryHolder {
 
         item.setItemMeta(meta);
         return item;
+    }
+
+    private ItemStack knockbackItem(Material m, @Nullable String name, @Nullable Integer amount, @Nullable Integer price, @Nullable String unit, Integer level) {
+        ItemStack i = newItem(m, name, amount, price, unit);
+        ItemMeta meta = i.getItemMeta();
+
+        meta.addEnchant(Enchantment.KNOCKBACK, level, true);
+
+        i.setItemMeta(meta);
+        return i;
     }
 
     private ItemStack itemError(String e, String func, String cls) {
