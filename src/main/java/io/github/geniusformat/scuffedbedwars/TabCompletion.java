@@ -12,7 +12,7 @@ public class TabCompletion implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
 
         if (args.length == 1) {
             listArgs.clear();

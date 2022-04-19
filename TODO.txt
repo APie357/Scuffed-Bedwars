@@ -1,5 +1,6 @@
- - Fix shop
+ - Finish adding items to the shop
  - Add dummy as the "shopkeeper"
+   - Tutorial: https://youtu.be/mnUVroXsyG8?t=737
  - Restrict blocks that are able to be broken.
  - Add knockback churro (lvl 3)
  - Add knockback drumstick (lvl 5)
